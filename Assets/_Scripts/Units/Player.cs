@@ -10,13 +10,17 @@ public class Player : Unit
     private VisibleFloatingJoystick joystick;
     [field: SerializeField]
     public Weapon Weapon { get; private set; }
+
     [SerializeField]
     private Transform bulletsSpawnPoint;
+
+    public Inventory Inventory = new();
 
 
     public override void Awake()
     {
         base.Awake();
+
         if (Weapon != null)
         {
             Weapon.bulletsSpawnPoint = bulletsSpawnPoint;
@@ -34,10 +38,24 @@ public class Player : Unit
         Weapon.FixedUpdate();
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Enemy")
+        {
+            Enemy enemy = collision.collider.GetComponent<Enemy>();
+            TakeHit(enemy.CollisionDamage);
+        }
+    }
+
     private void LookAtDirection(float value)
     {
         int lookDirection = value > 0 ? 1: -1;
         transform.localScale = new Vector3(lookDirection, 1f, 1f);
+    }
+
+    public void AddItem(ItemScriptable item)
+    {
+        Inventory.AddItem(item);
     }
 
     public void OnMove()

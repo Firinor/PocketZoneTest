@@ -45,16 +45,15 @@ public abstract class Unit : MonoBehaviour
         gameManager = manager;
     }
 
-    public void TakeHit(int damage)
+    public virtual void TakeHit(int damage)
     {
         CurrentHealth.Value -= damage;
         if (CurrentHealth.Value <= 0)
             UnitDeath();
     }
 
-    private void UnitDeath()
+    protected virtual void UnitDeath()
     {
-        gameManager.UnitDeath(this);
         Destroy(gameObject);
     }
 }

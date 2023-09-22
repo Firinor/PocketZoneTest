@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : ScriptableObject
 {
     public int Damage;
-
+    public float MaxDistance;
     public int MaxBullets;
     [HideInInspector]
     public IntReactiveProperty Bullets;
@@ -29,7 +29,9 @@ public class Weapon : ScriptableObject
 
     public void Shot(Vector2 weaponSpawnPosition, Unit unitTarget = null)
     {
-        if (cooldown > 0 || Bullets.Value == 0)
+        if (cooldown > 0 
+            || Bullets.Value == 0 
+            || Vector2.Distance(unitTarget.HitPosition, weaponSpawnPosition) > MaxDistance)
             return;
 
         cooldown += ReAttack;

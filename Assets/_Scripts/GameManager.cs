@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject[] enemyPrefabs;
     [SerializeField]
+    private ItemScriptable[] itemPool;
+    [SerializeField]
+    private GameObject itemHolderPrefab;
+    [SerializeField]
     private int enemyCount = 3;
     [SerializeField]
     private Transform unitParent;
@@ -17,6 +22,23 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         SpawnEnemy();
+        LoadOnStart();
+    }
+
+    private static void LoadOnStart()
+    {
+        SaveData result = SaveLoadManager.Load();
+        if(result != null && result.Inventory != null)
+            FindAnyObjectByType<Player>().Inventory = result.Inventory;
+    }
+
+    public static SaveData GetProgress()
+    {
+        SaveData result = new SaveData();
+        Player player = FindAnyObjectByType<Player>();
+        if (player != null)
+            result.Inventory = player.Inventory;
+        return result;
     }
 
     private void SpawnEnemy()
@@ -32,6 +54,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public Sprite GetSprite(int ID)
+    {
+        return itemPool.Where(i => i.ID == ID).First().Image;
+    }
+
     private Vector2 GetRandomPosition()
     {
         BoxCollider2D c = spawnZones[Random.Range(minInclusive: 0, maxExclusive: spawnZones.Length)].GetComponent<BoxCollider2D>();
@@ -45,6 +72,12 @@ public class GameManager : MonoBehaviour
     private GameObject SomeEnemy()
     {
         return enemyPrefabs[Random.Range(minInclusive: 0, maxExclusive: enemyPrefabs.Length)];
+    }
+
+    public void SpawnDrop(ItemScriptable item, Vector3 position)
+    {
+        var newItemHolder = Instantiate(itemHolderPrefab, position, Quaternion.identity, unitParent);
+        newItemHolder.GetComponent<ItemHolder>().SetItem(item);
     }
 
     public void UnitDeath(Unit unit)

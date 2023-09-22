@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 6127699990563651673}
   m_Layer: 6
   m_Name: Enemy (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -275,9 +275,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 50
-  speed: 6
+  speed: 2
   rigidbody2d: {fileID: 3804101688918174548}
   hitPosition: {x: 0, y: 13.17}
+  <CollisionDamage>k__BackingField: 5
+  <AgroRadius>k__BackingField: 500
+  <DropList>k__BackingField:
+  - {fileID: 11400000, guid: 8dbc492557ad0874785101fad8e45193, type: 2}
+  - {fileID: 11400000, guid: f7aa13306e33f7343920c5e38c19472c, type: 2}
+  - {fileID: 11400000, guid: f7aa13306e33f7343920c5e38c19472c, type: 2}
+  - {fileID: 11400000, guid: f7aa13306e33f7343920c5e38c19472c, type: 2}
+  - {fileID: 11400000, guid: f7aa13306e33f7343920c5e38c19472c, type: 2}
 --- !u!1 &3804101689461421568
 GameObject:
   m_ObjectHideFlags: 0

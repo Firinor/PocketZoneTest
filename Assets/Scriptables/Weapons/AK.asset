@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd8b5ef581f4504da5288919890dccd, type: 3}
   m_Name: AK
   m_EditorClassIdentifier: 
-  Damage: 25
+  Damage: 17
+  MaxDistance: 200
   MaxBullets: 200
   Bullets:
     value: 200
   ReAttack: 0.3
   bulletsSpawnPoint: {fileID: 0}
+  bulletLine: {fileID: 0}
