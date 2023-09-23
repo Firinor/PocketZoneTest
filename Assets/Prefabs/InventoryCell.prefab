@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5941612576932127685
 RectTransform:
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -121,7 +121,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5318286906897337716}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3178943897778764064}
+        m_TargetAssemblyTypeName: ItemCell, Assembly-CSharp
+        m_MethodName: DeleteItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &657168447336260798
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,8 +280,8 @@ GameObject:
   - component: {fileID: 4786653957784353611}
   - component: {fileID: 7368499808949070721}
   - component: {fileID: 7588910353433426368}
-  - component: {fileID: 4417015367845809038}
   - component: {fileID: -3178943897778764064}
+  - component: {fileID: 8231749166797322658}
   m_Layer: 5
   m_Name: InventoryCell
   m_TagString: Untagged
@@ -338,7 +350,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4417015367845809038
+--- !u!114 &-3178943897778764064
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -347,7 +359,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 816205286420393502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: d3f00c8427ddf4e448e2a0934bed7c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -382,7 +394,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-3178943897778764064
+--- !u!114 &8231749166797322658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -391,13 +403,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 816205286420393502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f00c8427ddf4e448e2a0934bed7c2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c7044288edb8b145848e05b8196e89e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 2747038403521025693}
   imageRatio: {fileID: 1700227093508451045}
   textCount: {fileID: 1751373049104771869}
   textDiscription: {fileID: 2399510190898131798}
+  itemImage: {fileID: 2747038403521025693}
+  deleteButton: {fileID: 578883682031579299}
 --- !u!1 &5270586191970116276
 GameObject:
   m_ObjectHideFlags: 0

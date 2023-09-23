@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -63,6 +61,11 @@ public class Player : Unit
         Vector2 unitPosition = transform.position;
 
         rigidbody2d.MovePosition(unitPosition + joystick.Direction * speed * Time.fixedDeltaTime);
+    }
+
+    public void DeleteItem(Item item)
+    {
+        Inventory.RemoveItem(item);
     }
 
     public void Attack()

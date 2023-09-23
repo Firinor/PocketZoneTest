@@ -36,7 +36,7 @@ public class InventoryObserver : MonoBehaviour
         {
             var itemCellGameObject = Instantiate(inventoryCellPrefab, parentTransform);
             ItemCell cell = itemCellGameObject.GetComponent<ItemCell>();
-            cell.Initialized(gameManager, item);
+            cell.Initialized(gameManager, player, item);
         }
     }
 

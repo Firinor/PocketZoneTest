@@ -26,4 +26,22 @@ public class Inventory
 
         SaveLoadManager.Save();
     }
+
+    public void RemoveItem(Item item)
+    {
+        var itemStack = from i in items
+                        where i == item
+                        select i;
+
+        if (itemStack.Any())
+        {
+            items.Remove(itemStack.First());
+        }
+        else
+        {
+            throw new Exception("Attempt to delete a non-existent item!");
+        }
+
+        SaveLoadManager.Save();
+    }
 }

@@ -1,37 +1,53 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemCell : MonoBehaviour
+public class ItemCell : Button
 {
-    [SerializeField]
-    private Image image;
-    [SerializeField]
-    private AspectRatioFitter imageRatio;
-    [SerializeField]
-    private TextMeshProUGUI textCount;
-    [SerializeField]
-    private TextMeshProUGUI textDiscription;
+    private InventoryCellHolder holder;
+    private Item item;
+    private Player player;
     private GameManager gameManager;
 
-    public void Initialized(GameManager gameManager, Item item)
+    public void Initialized(GameManager gameManager, Player player, Item item)
     {
+        holder = GetComponent<InventoryCellHolder>();
         this.gameManager = gameManager;
+        this.player = player;
         SetItem(item);
+    }
+
+    public override void OnDeselect(BaseEventData eventData)
+    {
+        holder.deleteButton.SetActive(false);
+        base.OnDeselect(eventData);
+    }
+
+    public override void OnSelect(BaseEventData eventData)
+    {
+        holder.deleteButton.SetActive(true);
+        base.OnSelect(eventData);
     }
 
     private void SetItem(Item item)
     {
-        image.sprite = gameManager.GetSprite(item.ID);
+        this.item = item;
+        holder.itemImage.sprite = gameManager.GetSprite(item.ID);
         Rect imageRect = image.sprite.rect;
-        imageRatio.aspectRatio = imageRect.width / imageRect.height;
+        holder.imageRatio.aspectRatio = imageRect.width / imageRect.height;
         if (item.Count > 1)
         {
-            textCount.enabled = true;
-            textCount.text = item.Count.ToString();
+            holder.textCount.enabled = true;
+            holder.textCount.text = item.Count.ToString();
         }
         else
-            textCount.enabled = false;
-        textDiscription.text = item.Discription;
+            holder.textCount.enabled = false;
+        holder.textDiscription.text = item.Discription;
+    }
+
+    public void DeleteItem()
+    {
+        player.DeleteItem(item);
+        Destroy(gameObject);
     }
 }
